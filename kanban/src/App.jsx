@@ -7,6 +7,7 @@ import Kanban from "./kanban.jsx";
 
 function App() {
     const [items, setItems] = useState([]);
+    const [activeBoard, setActiveBoard] = useState(null);
 
     useEffect(() => {
         fetch("/data.json")
@@ -23,11 +24,11 @@ function App() {
             <div className="container-fluid ">
                 <div className="row">
                    <div className="col-md-4">
-                       <Navigation menuItems={items.boards} />
+                       <Navigation menuItems={items.boards}  onSelectBoard={setActiveBoard} />
                    </div>
                     <div className="col-md-8">
                         <div className="d-flex justify-content-between align-items-center">
-                            <h2>Platform Launch</h2>
+                            <h2>{activeBoard?.name}</h2>
                             <button className="btn btn-primary">Add new Task</button>
                         </div>
                         <Kanban/>
