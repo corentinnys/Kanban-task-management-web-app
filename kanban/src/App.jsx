@@ -7,14 +7,22 @@ import Kanban from "./kanban.jsx";
 
 function App() {
     const [items, setItems] = useState([]);
+
     const [activeBoard, setActiveBoard] = useState(null);
 
+    const handleCreateBoard = (newBoard) => {
+        const boardWithId = {
+            ...newBoard,
+            id: crypto.randomUUID()
+        };
+
+        setItems((prev) => [...prev, boardWithId]);
+    };
     useEffect(() => {
         fetch("/data.json")
             .then((res) => res.json())
             .then((data) => {
-                setItems(data);
-                console.log(items);
+                setItems(data.boards);
             })
             .catch((err) => console.error(err));
     }, []);
@@ -24,14 +32,14 @@ function App() {
             <div className="container-fluid ">
                 <div className="row">
                    <div className="col-md-4">
-                       <Navigation menuItems={items.boards}  onSelectBoard={setActiveBoard} />
+                       <Navigation menuItems={items}  onSelectBoard={setActiveBoard}  onCreateBoard={handleCreateBoard} />
                    </div>
                     <div className="col-md-8">
                         <div className="d-flex justify-content-between align-items-center">
                             <h2>{activeBoard?.name}</h2>
                             <button className="btn btn-primary">Add new Task</button>
                         </div>
-                        <Kanban/>
+                        <Kanban board={activeBoard}/>
                     </div>
                 </div>
             </div>
