@@ -24,7 +24,7 @@ function Navigation({ menuItems = [], onSelectBoard, onCreateBoard }) {
     };
 
     return (
-        <nav className="dark-mode">
+        <nav >
             <ul className="list-group list-unstyled">
                 {menuItems.map((board) => (
                     <li

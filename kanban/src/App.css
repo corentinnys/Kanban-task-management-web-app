@@ -2,6 +2,10 @@
     background: #2C2C38;
     overflow: hidden;
 }
+.light-mode{
+    background: #F5F5F5;
+    overflow: hidden;
+}
 .myhover{
     position: relative;
     right: 30px;
@@ -17,4 +21,13 @@
 .icon-board{
     background: url("./assets/icon-board.svg") no-repeat;
     background-position: 50px;
+}
+
+.form-select {
+    background-color: #6c757d; /* gris */
+    color: white; /* texte blanc */
+}
+
+.form-select option {
+    color: black; /* texte des options (important pour lisibilité) */
 }
